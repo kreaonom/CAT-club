@@ -42,10 +42,13 @@
         }
         .nav-item:hover { color: #fbbf24; }
         
-        .nav-active { 
-            color: #fbbf24 !important; 
-            border-bottom: 2px solid #fbbf24;
-            padding-bottom: 4px;
+        /* Nav active only for desktop border */
+        @media (min-width: 1024px) {
+            .nav-active { 
+                color: #fbbf24 !important; 
+                border-bottom: 2px solid #fbbf24;
+                padding-bottom: 4px;
+            }
         }
 
         .glass-card {
@@ -77,50 +80,75 @@
             backdrop-filter: blur(8px);
         }
         #lessonModal.active { display: flex; }
+
+        /* Mobile Menu State */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body class="pb-20">
 
     <nav class="glass-nav sticky top-0 w-full z-50 h-20 flex items-center">
-    <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-        <div class="flex items-center space-x-4">
-            <div class="flex -space-x-2">
-                <img src="https://i.imgur.com/UumgAmR.png" class="h-10 w-10 rounded-full border border-white/20 bg-white">
-                <img src="https://i.imgur.com/ezYRCVu.jpeg" class="h-10 w-10 rounded-full border border-white/20 bg-white">
-                <img src="https://i.imgur.com/SmhQQAd.jpeg" class="h-10 w-10 rounded-full border border-yellow-500 shadow-lg object-cover bg-white">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="flex -space-x-2">
+                    <img src="https://i.imgur.com/UumgAmR.png" class="h-8 w-8 md:h-10 md:w-10 rounded-full border border-white/20 bg-white">
+                    <img src="https://i.imgur.com/ezYRCVu.jpeg" class="h-8 w-8 md:h-10 md:w-10 rounded-full border border-white/20 bg-white">
+                    <img src="https://i.imgur.com/SmhQQAd.jpeg" class="h-8 w-8 md:h-10 md:w-10 rounded-full border border-yellow-500 shadow-lg object-cover bg-white">
+                </div>
+                <div>
+                    <p class="text-white font-black tracking-tighter uppercase text-xs md:text-sm leading-none">MNHS CAT CLUB</p>
+                    <p class="text-yellow-500 text-[5px] md:text-[6px] font-bold uppercase tracking-[0.2em] md:tracking-[0.3em]">Citizenship Advancement Training</p>
+                </div>
             </div>
-            <div class="hidden sm:block leading-none">
-                <p class="text-white font-black tracking-tighter uppercase text-sm">MNHS CAT CLUB</p>
-                <p class="text-yellow-500 text-[6px] font-bold uppercase tracking-[0.3em]">Citizenship Advancement Training</p>
+
+            <div class="hidden lg:flex items-center space-x-8">
+                <ul class="flex space-x-6 text-[10px] font-bold uppercase tracking-widest">
+                    <li><a href="index.html" class="text-white/70 hover:text-white transition">Home</a></li>
+                    <li><a href="officers.html" class="text-white/70 hover:text-white transition">Officers</a></li>
+                    <li><a href="about.html" class="text-yellow-500 nav-active">About</a></li>
+                    <li><a href="gallery.html" class="text-white/70 hover:text-white transition">Gallery</a></li>
+                    <li><a href="join.html" class="text-white/70 hover:text-white transition">Join</a></li>
+                </ul>
+                <a href="feedback.html" class="bg-yellow-500 text-green-950 px-5 py-2 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-lg">Feedback</a>
             </div>
+
+            <button id="menu-btn" class="lg:hidden text-white p-2">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
         </div>
 
-        <div class="flex items-center space-x-8">
-            <ul class="flex space-x-6 text-[10px] font-bold uppercase tracking-widest">
-                <li><a href="index.html" class="text-white/70 hover:text-white transition">Home</a></li>
-                <li><a href="officers.html" class="text-white/70 hover:text-white transition">Officers</a></li>
-                <li><a href="about.html" class="text-yellow-500 border-b-2 border-yellow-500 pb-1">About</a></li>
-                <li><a href="gallery.html" class="text-white/70 hover:text-white transition">Gallery</a></li>
-                <li><a href="join.html" class="text-white/70 hover:text-white transition">Join</a></li>
+        <div id="mobile-menu" class="fixed top-0 right-0 h-screen w-64 bg-green-950/fb backdrop-blur-2xl z-[60] flex flex-col p-8 lg:hidden shadow-2xl">
+            <button id="close-btn" class="self-end text-white text-4xl mb-8">&times;</button>
+            <ul class="flex flex-col space-y-6">
+                <li><a href="home.html" class="text-white font-bold uppercase tracking-widest">Home</a></li>
+                <li><a href="officers.html" class="text-white font-bold uppercase tracking-widest">Officers</a></li>
+                <li><a href="about.html" class="text-yellow-500 font-bold uppercase tracking-widest">About</a></li>
+                <li><a href="gallery.html" class="text-white font-bold uppercase tracking-widest">Gallery</a></li>
+                <li><a href="join.html" class="text-white font-bold uppercase tracking-widest">Join</a></li>
+                <li><a href="feedback.html" class="bg-yellow-500 text-green-950 text-center py-3 rounded-full font-black text-xs uppercase">Feedback</a></li>
             </ul>
-            <a href="feedback.html" class="bg-yellow-500 text-green-950 px-5 py-2 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-lg">Feedback</a>
         </div>
-    </div>
-</nav>
+    </nav>
 
-    <header class="pt-20 pb-16 text-center" data-aos="fade-up">
+    <header class="pt-12 md:pt-20 pb-8 md:pb-16 text-center" data-aos="fade-up">
         <div class="max-w-4xl mx-auto px-6">
-            <span class="text-yellow-500 font-black tracking-[0.5em] text-[10px] uppercase">Honor • Loyalty • Integrity</span>
+            <span class="text-yellow-500 font-black tracking-[0.3em] md:tracking-[0.5em] text-[8px] md:text-[10px] uppercase">Honor • Loyalty • Integrity</span>
             <h1 class="heading-font text-5xl md:text-8xl mt-4 mb-6 uppercase italic shimmer">About Us</h1>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6">
+    <main class="max-w-6xl mx-auto px-4 md:px-6">
         
-        <div class="mb-24 max-w-5xl mx-auto" data-aos="zoom-in">
-            <h2 class="heading-font text-3xl md:text-5xl text-center text-white mb-10 uppercase tracking-tighter">Legal Basis & History</h2>
-            <div class="glass-card p-10 md:p-14 rounded-[2.5rem] border-l-4 border-l-yellow-500 shadow-2xl">
-                <div class="space-y-6 text-gray-200 text-lg leading-relaxed text-justify">
+        <div class="mb-16 md:mb-24 max-w-5xl mx-auto" data-aos="zoom-in">
+            <h2 class="heading-font text-2xl md:text-5xl text-center text-white mb-6 md:mb-10 uppercase tracking-tighter">Legal Basis & History</h2>
+            <div class="glass-card p-6 md:p-14 rounded-[1.5rem] md:rounded-[2.5rem] border-l-4 border-l-yellow-500 shadow-2xl">
+                <div class="space-y-4 md:space-y-6 text-gray-200 text-sm md:text-lg leading-relaxed text-justify">
                     <p>Citizenship Advancement Training (CAT) is a restructuring of the <span class="text-yellow-500 font-bold">"Citizen Army Training"</span> and is a component of MAPEH. It is grounded in the <span class="text-yellow-500 font-bold">1987 Constitution (Article II, Sec. 13)</span>, which recognizes the vital role of the youth in nation-building and promotes their physical, moral, spiritual, intellectual, and social well-being.</p>
                     
                     <p>According to the <span class="text-yellow-500 font-bold">National Defense Act (Article I, Sec. 2)</span>, the preservation of the State is the obligation of every citizen. CAT aims to inculcate patriotism and nationalism while encouraging involvement in public and civic affairs among students.</p>
@@ -130,64 +158,77 @@
             </div>
         </div>
 
-        <div class="mb-24 text-center" data-aos="fade-up">
-            <h2 class="heading-font text-3xl md:text-5xl text-white mb-12 uppercase tracking-tighter">Program & Virtues</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                <div onclick="showLesson('Military Orientation')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
-                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Military Orientation</h3>
+        <div class="mb-16 md:mb-24 text-center" data-aos="fade-up">
+            <h2 class="heading-font text-2xl md:text-5xl text-white mb-8 md:mb-12 uppercase tracking-tighter">Program & Virtues</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
+                <div onclick="showLesson('Military Orientation')" class="glass-card p-4 md:p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[8px] md:text-[10px] text-yellow-500 uppercase tracking-widest">Military Orientation</h3>
                 </div>
-                <div onclick="showLesson('Community Service')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
-                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Community Service</h3>
+                <div onclick="showLesson('Community Service')" class="glass-card p-4 md:p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[8px] md:text-[10px] text-yellow-500 uppercase tracking-widest">Community Service</h3>
                 </div>
-                <div onclick="showLesson('Public Safety')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
-                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Public Safety</h3>
+                <div onclick="showLesson('Public Safety')" class="glass-card p-4 md:p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[8px] md:text-[10px] text-yellow-500 uppercase tracking-widest">Public Safety</h3>
                 </div>
-                <div onclick="showLesson('Integrity')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
-                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Integrity</h3>
+                <div onclick="showLesson('Integrity')" class="glass-card p-4 md:p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[8px] md:text-[10px] text-yellow-500 uppercase tracking-widest">Integrity</h3>
                 </div>
-                <div onclick="showLesson('Loyalty')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
-                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Loyalty</h3>
+                <div onclick="showLesson('Loyalty')" class="glass-card p-4 md:p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[8px] md:text-[10px] text-yellow-500 uppercase tracking-widest">Loyalty</h3>
                 </div>
-                <div onclick="showLesson('Service')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
-                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Service</h3>
+                <div onclick="showLesson('Service')" class="glass-card p-4 md:p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[8px] md:text-[10px] text-yellow-500 uppercase tracking-widest">Service</h3>
                 </div>
-                <div onclick="showLesson('Discipline')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
-                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Military Principle</h3>
+                <div onclick="showLesson('Discipline')" class="glass-card p-4 md:p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[8px] md:text-[10px] text-yellow-500 uppercase tracking-widest">Military Principle</h3>
                 </div>
-                <div onclick="showLesson('Objectives')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
-                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Objectives</h3>
+                <div onclick="showLesson('Objectives')" class="glass-card p-4 md:p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[8px] md:text-[10px] text-yellow-500 uppercase tracking-widest">Objectives</h3>
                 </div>
             </div>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-8 mb-24">
-            <div class="glass-card p-10 rounded-[2.5rem]" data-aos="fade-right">
-                <h3 class="heading-font text-2xl font-black text-yellow-500 mb-4 uppercase">Program Goals</h3>
-                <p class="text-gray-200 text-sm leading-relaxed">To develop personal qualities and attributes essential to successful leadership, and to instill an appreciation for the spirit of the motto: Honor, Loyalty, and Integrity.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-24">
+            <div class="glass-card p-8 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem]" data-aos="fade-right">
+                <h3 class="heading-font text-xl md:text-2xl font-black text-yellow-500 mb-4 uppercase">Program Goals</h3>
+                <p class="text-gray-200 text-xs md:text-sm leading-relaxed">To develop personal qualities and attributes essential to successful leadership, and to instill an appreciation for the spirit of the motto: Honor, Loyalty, and Integrity.</p>
             </div>
-            <div class="glass-card p-10 rounded-[2.5rem]" data-aos="fade-left">
-                <h3 class="heading-font text-2xl font-black text-yellow-500 mb-4 uppercase">Core Motto</h3>
-                <p class="text-gray-200 text-sm leading-relaxed">"Honor, Loyalty, and Integrity" — Serving as the foundation for every cadet's physical, moral, and social development within the corps.</p>
+            <div class="glass-card p-8 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem]" data-aos="fade-left">
+                <h3 class="heading-font text-xl md:text-2xl font-black text-yellow-500 mb-4 uppercase">Core Motto</h3>
+                <p class="text-gray-200 text-xs md:text-sm leading-relaxed">"Honor, Loyalty, and Integrity" — Serving as the foundation for every cadet's physical, moral, and social development within the corps.</p>
             </div>
         </div>
 
     </main>
 
     <div id="lessonModal">
-        <div class="glass-card max-w-lg w-full p-8 md:p-12 rounded-[2.5rem] relative border-t-4 border-yellow-500 text-center shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-white/50 hover:text-white transition-all text-2xl font-bold">&times;</button>
-            <h2 id="modalTitle" class="heading-font text-3xl text-yellow-500 uppercase italic mb-6">TITLE</h2>
-            <p id="modalLesson" class="text-gray-200 leading-relaxed italic">Lesson details go here...</p>
+        <div class="glass-card max-w-lg w-full p-8 md:p-12 rounded-[2rem] md:rounded-[2.5rem] relative border-t-4 border-yellow-500 text-center shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-6 text-white/50 hover:text-white transition-all text-2xl font-bold">&times;</button>
+            <h2 id="modalTitle" class="heading-font text-2xl md:text-3xl text-yellow-500 uppercase italic mb-6">TITLE</h2>
+            <p id="modalLesson" class="text-gray-200 text-sm md:text-base leading-relaxed italic">Lesson details go here...</p>
             <button onclick="closeModal()" class="mt-8 px-8 py-3 bg-yellow-500 text-green-950 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all">Dismiss</button>
         </div>
     </div>
 
     <footer class="mt-20 py-10 text-center opacity-40">
-        <p class="text-[8px] uppercase tracking-[1em] font-bold italic">MNHS CAT Corps • 2026 Official Page</p>
+        <p class="text-[6px] md:text-[8px] uppercase tracking-[0.5em] md:tracking-[1em] font-bold italic px-4">MNHS CAT Corps • 2026 Official Page</p>
     </footer>
 
     <script>
         AOS.init({ duration: 1000, once: true });
+
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
 
         const lessons = {
             'Military Orientation': 'Provides learning opportunities for students to gain knowledge, skills, and understanding of the rights and duties of citizenship with focus on leadership, followership, and personal discipline.',
