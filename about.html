@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | MNHS CAT Corps</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <style>
+        body {
+            background-color: #051a0b;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            background-image: linear-gradient(rgba(5, 26, 11, 0.8), rgba(5, 26, 11, 0.95)), 
+                              url('https://i.imgur.com/Kqgdu72.jpeg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+        }
+
+        .heading-font { font-family: 'Montserrat', sans-serif; }
+
+        .glass-nav {
+            background: rgba(5, 26, 11, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item {
+            position: relative;
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .nav-item:hover { color: #fbbf24; }
+        
+        .nav-active { 
+            color: #fbbf24 !important; 
+            border-bottom: 2px solid #fbbf24;
+            padding-bottom: 4px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, #fff, #fbbf24, #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+        @keyframes shine { to { background-position: 200% center; } }
+
+        /* MODAL STYLES */
+        #lessonModal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+        }
+        #lessonModal.active { display: flex; }
+    </style>
+</head>
+<body class="pb-20">
+
+    <nav class="glass-nav sticky top-0 w-full z-50 h-20 flex items-center">
+    <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+            <div class="flex -space-x-2">
+                <img src="https://i.imgur.com/UumgAmR.png" class="h-10 w-10 rounded-full border border-white/20 bg-white">
+                <img src="https://i.imgur.com/ezYRCVu.jpeg" class="h-10 w-10 rounded-full border border-white/20 bg-white">
+                <img src="https://i.imgur.com/SmhQQAd.jpeg" class="h-10 w-10 rounded-full border border-yellow-500 shadow-lg object-cover bg-white">
+            </div>
+            <div class="hidden sm:block leading-none">
+                <p class="text-white font-black tracking-tighter uppercase text-sm">MNHS CAT CLUB</p>
+                <p class="text-yellow-500 text-[6px] font-bold uppercase tracking-[0.3em]">Citizenship Advancement Training</p>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-8">
+            <ul class="flex space-x-6 text-[10px] font-bold uppercase tracking-widest">
+                <li><a href="file:///C:/Users/gles/Desktop/home.html" class="text-white/70 hover:text-white transition">Home</a></li>
+                <li><a href="file:///C:/Users/gles/Desktop/officers.html" class="text-white/70 hover:text-white transition">Officers</a></li>
+                <li><a href="file:///C:/Users/gles/Desktop/about.html" class="text-yellow-500 border-b-2 border-yellow-500 pb-1">About</a></li>
+                <li><a href="file:///C:/Users/gles/Desktop/gallery.html" class="text-white/70 hover:text-white transition">Gallery</a></li>
+                <li><a href="file:///C:/Users/gles/Desktop/join.html" class="text-white/70 hover:text-white transition">Join</a></li>
+            </ul>
+            <a href="file:///C:/Users/gles/Desktop/feedback.html" class="bg-yellow-500 text-green-950 px-5 py-2 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-lg">Feedback</a>
+        </div>
+    </div>
+</nav>
+
+    <header class="pt-20 pb-16 text-center" data-aos="fade-up">
+        <div class="max-w-4xl mx-auto px-6">
+            <span class="text-yellow-500 font-black tracking-[0.5em] text-[10px] uppercase">Honor • Loyalty • Integrity</span>
+            <h1 class="heading-font text-5xl md:text-8xl mt-4 mb-6 uppercase italic shimmer">About Us</h1>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6">
+        
+        <div class="mb-24 max-w-5xl mx-auto" data-aos="zoom-in">
+            <h2 class="heading-font text-3xl md:text-5xl text-center text-white mb-10 uppercase tracking-tighter">Legal Basis & History</h2>
+            <div class="glass-card p-10 md:p-14 rounded-[2.5rem] border-l-4 border-l-yellow-500 shadow-2xl">
+                <div class="space-y-6 text-gray-200 text-lg leading-relaxed text-justify">
+                    <p>Citizenship Advancement Training (CAT) is a restructuring of the <span class="text-yellow-500 font-bold">"Citizen Army Training"</span> and is a component of MAPEH. It is grounded in the <span class="text-yellow-500 font-bold">1987 Constitution (Article II, Sec. 13)</span>, which recognizes the vital role of the youth in nation-building and promotes their physical, moral, spiritual, intellectual, and social well-being.</p>
+                    
+                    <p>According to the <span class="text-yellow-500 font-bold">National Defense Act (Article I, Sec. 2)</span>, the preservation of the State is the obligation of every citizen. CAT aims to inculcate patriotism and nationalism while encouraging involvement in public and civic affairs among students.</p>
+                    
+                    <p class="font-bold text-white italic border-t border-white/10 pt-6 text-center">This training is a requirement for graduation in Junior High School. Student performance is rated either PASSED or FAILED.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-24 text-center" data-aos="fade-up">
+            <h2 class="heading-font text-3xl md:text-5xl text-white mb-12 uppercase tracking-tighter">Program & Virtues</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                <div onclick="showLesson('Military Orientation')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Military Orientation</h3>
+                </div>
+                <div onclick="showLesson('Community Service')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Community Service</h3>
+                </div>
+                <div onclick="showLesson('Public Safety')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Public Safety</h3>
+                </div>
+                <div onclick="showLesson('Integrity')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Integrity</h3>
+                </div>
+                <div onclick="showLesson('Loyalty')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Loyalty</h3>
+                </div>
+                <div onclick="showLesson('Service')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Service</h3>
+                </div>
+                <div onclick="showLesson('Discipline')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Military Principle</h3>
+                </div>
+                <div onclick="showLesson('Objectives')" class="glass-card p-6 rounded-2xl border border-white/10 hover:border-yellow-500 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                    <h3 class="font-bold text-[10px] text-yellow-500 uppercase tracking-widest">Objectives</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-24">
+            <div class="glass-card p-10 rounded-[2.5rem]" data-aos="fade-right">
+                <h3 class="heading-font text-2xl font-black text-yellow-500 mb-4 uppercase">Program Goals</h3>
+                <p class="text-gray-200 text-sm leading-relaxed">To develop personal qualities and attributes essential to successful leadership, and to instill an appreciation for the spirit of the motto: Honor, Loyalty, and Integrity.</p>
+            </div>
+            <div class="glass-card p-10 rounded-[2.5rem]" data-aos="fade-left">
+                <h3 class="heading-font text-2xl font-black text-yellow-500 mb-4 uppercase">Core Motto</h3>
+                <p class="text-gray-200 text-sm leading-relaxed">"Honor, Loyalty, and Integrity" — Serving as the foundation for every cadet's physical, moral, and social development within the corps.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="lessonModal">
+        <div class="glass-card max-w-lg w-full p-8 md:p-12 rounded-[2.5rem] relative border-t-4 border-yellow-500 text-center shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-white/50 hover:text-white transition-all text-2xl font-bold">&times;</button>
+            <h2 id="modalTitle" class="heading-font text-3xl text-yellow-500 uppercase italic mb-6">TITLE</h2>
+            <p id="modalLesson" class="text-gray-200 leading-relaxed italic">Lesson details go here...</p>
+            <button onclick="closeModal()" class="mt-8 px-8 py-3 bg-yellow-500 text-green-950 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all">Dismiss</button>
+        </div>
+    </div>
+
+    <footer class="mt-20 py-10 text-center opacity-40">
+        <p class="text-[8px] uppercase tracking-[1em] font-bold italic">MNHS CAT Corps • 2026 Official Page</p>
+    </footer>
+
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        const lessons = {
+            'Military Orientation': 'Provides learning opportunities for students to gain knowledge, skills, and understanding of the rights and duties of citizenship with focus on leadership, followership, and personal discipline.',
+            'Community Service': 'Refers to any activity that helps achieve the general welfare and the betterment of life of the members of the community, especially those devoted to health, education, safety, and morale.',
+            'Public Safety': 'Encompasses all programs and activities contributory to the maintenance of peace and order, public safety, and observance of and compliance with laws.',
+            'Integrity': 'The first virtue of CAT: Be honest at all times.',
+            'Loyalty': 'The second virtue of CAT: Speak well of the institution.',
+            'Service': 'The third virtue of CAT: Work for the betterment of mankind.',
+            'Discipline': 'Military Principles: "Obey first before you complain" and "You do what I say." Discipline is the foundation of all three program components.',
+            'Objectives': 'To develop the ability to uphold law and order, assume active participation in community activities, and develop personal qualities essential to successful leadership.'
+        };
+
+        function showLesson(value) {
+            const modal = document.getElementById('lessonModal');
+            document.getElementById('modalTitle').innerText = value;
+            document.getElementById('modalLesson').innerText = lessons[value];
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('lessonModal').classList.remove('active');
+        }
+
+        window.onclick = function(e) {
+            if (e.target == document.getElementById('lessonModal')) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
