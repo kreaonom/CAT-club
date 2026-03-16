@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback | MNHS CAT Corps</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+        body {
+            background-color: #051a0b;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            background-image: radial-gradient(circle at top right, rgba(20, 83, 45, 0.4), transparent);
+            min-height: 100vh;
+        }
+        .heading-font { font-family: 'Montserrat', sans-serif; }
+        .glass-nav {
+            background: rgba(5, 26, 11, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        input, textarea {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+        input:focus, textarea:focus {
+            border-color: #fbbf24 !important;
+            outline: none;
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
+        }
+        .shimmer {
+            background: linear-gradient(90deg, #fff, #fbbf24, #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
+        }
+        @keyframes shine { to { background-position: 200% center; } }
+    </style>
+</head>
+<body class="flex flex-col">
+
+    <nav class="glass-nav sticky top-0 w-full z-50 h-20 flex items-center">
+    <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+            <div class="flex -space-x-2">
+                <img src="https://i.imgur.com/UumgAmR.png" class="h-10 w-10 rounded-full border border-white/20 bg-white">
+                <img src="https://i.imgur.com/ezYRCVu.jpeg" class="h-10 w-10 rounded-full border border-white/20 bg-white">
+                <img src="https://i.imgur.com/SmhQQAd.jpeg" class="h-10 w-10 rounded-full border border-yellow-500 shadow-lg object-cover bg-white">
+            </div>
+            <div class="hidden sm:block leading-none">
+                <p class="text-white font-black tracking-tighter uppercase text-sm">MNHS CAT CLUB</p>
+                <p class="text-yellow-500 text-[6px] font-bold uppercase tracking-[0.3em]">Citizenship Advancement Training</p>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-8">
+            <ul class="flex space-x-6 text-[10px] font-bold uppercase tracking-widest">
+                <li><a href="file:///C:/Users/gles/Desktop/home.html" class="text-white/70 hover:text-white transition">Home</a></li>
+                <li><a href="file:///C:/Users/gles/Desktop/officers.html" class="text-white/70 hover:text-white transition">Officers</a></li>
+                <li><a href="file:///C:/Users/gles/Desktop/about.html" class="text-white/70 hover:text-white transition">About</a></li>
+                <li><a href="file:///C:/Users/gles/Desktop/gallery.html" class="text-white/70 hover:text-white transition">Gallery</a></li>
+                <li><a href="file:///C:/Users/gles/Desktop/join.html" class="text-white/70 hover:text-white transition">Join</a></li>
+            </ul>
+            <a href="file:///C:/Users/gles/Desktop/feedback.html" class="bg-white text-green-950 px-5 py-2 rounded-full font-black text-[10px] uppercase tracking-widest shadow-lg">Feedback</a>
+        </div>
+    </div>
+</nav>
+        </div>
+    </nav>
+
+    <main class="flex-grow flex items-center justify-center py-20 px-6">
+        <div class="max-w-xl w-full glass-card p-10 rounded-[2.5rem]" data-aos="zoom-in">
+            
+            <header class="text-center mb-10">
+                <span class="text-yellow-500 font-black tracking-[0.4em] text-[9px] uppercase">Official Report Form</span>
+                <h1 class="heading-font text-4xl md:text-5xl uppercase italic shimmer mt-2">Feedback</h1>
+                <div class="h-1 w-16 bg-yellow-500 mx-auto mt-4 rounded-full shadow-[0_0_10px_#fbbf24]"></div>
+            </header>
+
+            <form id="feedbackForm" class="space-y-6">
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2 ml-1">Full Name</label>
+                    <input type="text" id="name" required class="w-full px-5 py-3 rounded-xl" placeholder="Enter your full name">
+                </div>
+
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2 ml-1">Email Address</label>
+                    <input type="text" id="email" required class="w-full px-5 py-3 rounded-xl" placeholder="name@gmail.com">
+                </div>
+
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2 ml-1">Your Message</label>
+                    <textarea id="message" rows="4" required class="w-full px-5 py-3 rounded-xl resize-none" placeholder="Enter your feedback here..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-yellow-500 text-green-950 py-4 rounded-xl font-black uppercase text-xs tracking-[0.2em] hover:bg-white hover:scale-[1.02] transition-all duration-300 shadow-xl">
+                    Submit Report
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="py-10 text-center opacity-30">
+        <p class="text-[8px] uppercase tracking-[0.5em] font-bold">MNHS CAT Corps • 2026 Official Page</p>
+    </footer>
+
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        const feedbackForm = document.getElementById('feedbackForm');
+
+        feedbackForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nameValue = document.getElementById('name').value.trim();
+            const emailValue = document.getElementById('email').value.toLowerCase().trim();
+            const messageValue = document.getElementById('message').value.trim();
+
+            if (/\d/.test(nameValue)) {
+                alert("❌ INVALID NAME: Numbers are not allowed in the name field!");
+                return;
+            }
+
+            if (!emailValue.endsWith("@gmail.com")) {
+                alert("❌ INVALID EMAIL: Please use a valid '@gmail.com' address!");
+                return;
+            }
+
+            const emailParts = emailValue.split('@');
+            const namePart = emailParts[0]; 
+
+            if (namePart === "") {
+                alert("❌ INVALID EMAIL: Email prefix cannot be empty!");
+                return;
+            }
+
+            if (/^\d+$/.test(namePart)) {
+                alert("❌ INVALID EMAIL: Email prefix cannot be purely numbers!");
+                return;
+            }
+
+            if (messageValue.length < 5) {
+                alert("❌ MESSAGE TOO SHORT: Please provide a more detailed feedback.");
+                return;
+            }
+
+            alert("✅ SUCCESS: Thank you! Your feedback has been submitted successfully.");
+            feedbackForm.reset();
+        });
+    </script>
+
+</body>
+</html>
