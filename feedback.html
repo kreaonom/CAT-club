@@ -18,11 +18,33 @@
             min-height: 100vh;
         }
         .heading-font { font-family: 'Montserrat', sans-serif; }
+        
         .glass-nav {
             background: rgba(5, 26, 11, 0.95);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        /* Mobile Menu Sidebar Style */
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background: rgba(5, 26, 11, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            border-left: 1px solid rgba(255,255,255,0.1);
+        }
+        #mobile-menu.active { right: 0; }
+
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
@@ -53,37 +75,48 @@
 <body class="flex flex-col">
 
     <nav class="glass-nav sticky top-0 w-full z-50 h-20 flex items-center">
-    <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-        <div class="flex items-center space-x-4">
-            <div class="flex -space-x-2">
-                <img src="https://i.imgur.com/UumgAmR.png" class="h-10 w-10 rounded-full border border-white/20 bg-white">
-                <img src="https://i.imgur.com/ezYRCVu.jpeg" class="h-10 w-10 rounded-full border border-white/20 bg-white">
-                <img src="https://i.imgur.com/SmhQQAd.jpeg" class="h-10 w-10 rounded-full border border-yellow-500 shadow-lg object-cover bg-white">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="flex -space-x-2">
+                    <img src="https://i.imgur.com/UumgAmR.png" class="h-10 w-10 rounded-full border border-white/20 bg-white">
+                    <img src="https://i.imgur.com/ezYRCVu.jpeg" class="h-10 w-10 rounded-full border border-white/20 bg-white">
+                    <img src="https://i.imgur.com/SmhQQAd.jpeg" class="h-10 w-10 rounded-full border border-yellow-500 shadow-lg object-cover bg-white">
+                </div>
+                <div class="leading-none">
+                    <p class="text-white font-black tracking-tighter uppercase text-sm">MNHS CAT CLUB</p>
+                    <p class="text-yellow-500 text-[6px] font-bold uppercase tracking-[0.3em]">Citizenship Advancement Training</p>
+                </div>
             </div>
-            <div class="hidden sm:block leading-none">
-                <p class="text-white font-black tracking-tighter uppercase text-sm">MNHS CAT CLUB</p>
-                <p class="text-yellow-500 text-[6px] font-bold uppercase tracking-[0.3em]">Citizenship Advancement Training</p>
-            </div>
-        </div>
 
-        <div class="flex items-center space-x-8">
-            <ul class="flex space-x-6 text-[10px] font-bold uppercase tracking-widest">
-                <li><a href="index.html" class="text-white/70 hover:text-white transition">Home</a></li>
-                <li><a href="officers.html" class="text-white/70 hover:text-white transition">Officers</a></li>
-                <li><a href="about.html" class="text-white/70 hover:text-white transition">About</a></li>
-                <li><a href="gallery.html" class="text-white/70 hover:text-white transition">Gallery</a></li>
-                <li><a href="join.html" class="text-white/70 hover:text-white transition">Join</a></li>
-            </ul>
-            <a href="feedback.html" class="bg-white text-green-950 px-5 py-2 rounded-full font-black text-[10px] uppercase tracking-widest shadow-lg">Feedback</a>
-        </div>
-    </div>
-</nav>
+            <div class="hidden lg:flex items-center space-x-8">
+                <ul class="flex space-x-6 text-[10px] font-bold uppercase tracking-widest">
+                    <li><a href="index.html" class="text-white/70 hover:text-white transition">Home</a></li>
+                    <li><a href="officers.html" class="text-white/70 hover:text-white transition">Officers</a></li>
+                    <li><a href="about.html" class="text-white/70 hover:text-white transition">About</a></li>
+                    <li><a href="gallery.html" class="text-white/70 hover:text-white transition">Gallery</a></li>
+                    <li><a href="join.html" class="text-white/70 hover:text-white transition">Join</a></li>
+                </ul>
+                <a href="feedback.html" class="bg-yellow-500 text-green-950 px-5 py-2 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-lg">Feedback</a>
+            </div>
+
+            <button id="menu-toggle" class="lg:hidden text-white p-2">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
         </div>
     </nav>
 
+    <div id="mobile-menu" class="lg:hidden">
+        <button id="menu-close" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
+        <a href="home.html" class="text-xl font-bold uppercase tracking-widest">Home</a>
+        <a href="officers.html" class="text-xl font-bold uppercase tracking-widest">Officers</a>
+        <a href="about.html" class="text-xl font-bold uppercase tracking-widest">About</a>
+        <a href="gallery.html" class="text-xl font-bold uppercase tracking-widest">Gallery</a>
+        <a href="join.html" class="text-xl font-bold uppercase tracking-widest">Join</a>
+        <a href="feedback.html" class="bg-yellow-500 text-green-950 px-10 py-3 rounded-full font-black uppercase tracking-widest">Feedback</a>
+    </div>
+
     <main class="flex-grow flex items-center justify-center py-20 px-6">
         <div class="max-w-xl w-full glass-card p-10 rounded-[2.5rem]" data-aos="zoom-in">
-            
             <header class="text-center mb-10">
                 <span class="text-yellow-500 font-black tracking-[0.4em] text-[9px] uppercase">Official Report Form</span>
                 <h1 class="heading-font text-4xl md:text-5xl uppercase italic shimmer mt-2">Feedback</h1>
@@ -119,6 +152,21 @@
 
     <script>
         AOS.init({ duration: 1000, once: true });
+
+        // Navbar Toggle Script
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        menuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
 
         const feedbackForm = document.getElementById('feedbackForm');
 
@@ -161,6 +209,5 @@
             feedbackForm.reset();
         });
     </script>
-
 </body>
 </html>
