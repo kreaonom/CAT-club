@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MNHS CAT Club | Official Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden; 
+            background-color: #051a0b;
+        }
+        .heading-font { font-family: 'Montserrat', sans-serif; }
+
+        .hero-bg {
+            background: linear-gradient(rgba(10, 45, 20, 0.7), rgba(0, 0, 0, 0.85)), 
+                        url('https://i.imgur.com/x15DQz6.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item {
+            position: relative;
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover { color: #ffffff; }
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #fbbf24;
+            transition: width 0.3s ease;
+        }
+        .nav-item:hover::after { width: 100%; }
+
+        .nav-active { color: #fbbf24 !important; }
+        .nav-active::after { width: 100% !important; }
+
+        .shimmer {
+            background: linear-gradient(90deg, #fff, #fbbf24, #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
+        }
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        .btn-feedback {
+            box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.4);
+            animation: pulse-gold 2s infinite;
+        }
+        @keyframes pulse-gold {
+            70% { box-shadow: 0 0 0 15px rgba(250, 204, 21, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-bg relative">
+        
+        <nav class="glass-nav fixed top-0 w-full z-50">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+                
+                <div class="flex items-center space-x-4">
+                    <div class="flex -space-x-2">
+                        <img src="https://i.imgur.com/UumgAmR.png" class="h-10 w-10 rounded-full border border-white/20 bg-white" alt="DepEd">
+                        <img src="https://i.imgur.com/ezYRCVu.jpeg" class="h-10 w-10 rounded-full border border-white/20 bg-white" alt="MNHS">
+                        <img src="https://i.imgur.com/SmhQQAd.jpeg" class="h-10 w-10 rounded-full border border-yellow-500 shadow-md object-cover bg-white" alt="CAT">
+                    </div>
+                    <div class="hidden md:block">
+                        <p class="text-white font-black tracking-tighter text-lg leading-none uppercase">MNHS CAT</p>
+                        <p class="text-yellow-500 text-[7px] font-bold uppercase tracking-[0.3em]">Citizenship Advancement Training</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-10">
+                    <ul class="flex space-x-6 items-center"> 
+                        <li><a href="home.html" class="nav-item nav-active font-bold text-[10px] uppercase tracking-[0.2em]">Home</a></li>
+                        <li><a href="officers.html" class="nav-item font-bold text-[10px] uppercase tracking-[0.2em]">Officers</a></li>
+                        <li><a href="about.html" class="nav-item font-bold text-[10px] uppercase tracking-[0.2em]">About</a></li>
+                        <li><a href="gallery.html" class="nav-item font-bold text-[10px] uppercase tracking-[0.2em]">Gallery</a></li>
+                        <li><a href="join.html" class="nav-item font-bold text-[10px] uppercase tracking-[0.2em]">Join</a></li>
+                    </ul>
+                    
+                    <a href="feedback.html" class="btn-feedback bg-yellow-500 hover:bg-yellow-400 text-green-950 px-6 py-2 rounded-full font-black text-[10px] uppercase tracking-widest transition-all transform active:scale-90">
+                        Feedback
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="flex-grow flex items-center justify-center px-6">
+            <div class="text-center space-y-8 max-w-6xl">
+                
+                <div class="inline-block px-5 py-1.5 border border-white/10 rounded-full bg-white/5 backdrop-blur-md">
+                    <p class="text-white/50 text-[8px] md:text-[10px] uppercase tracking-[0.5em] font-bold">Vanguard of Discipline</p>
+                </div>
+                
+                <h1 class="heading-font text-4xl md:text-7xl lg:text-[8rem] text-white font-black leading-[0.9] tracking-tighter uppercase">
+                    Discipline. <br class="md:hidden"> 
+                    Leadership. <br class="md:hidden"> 
+                    <span class="shimmer italic">Service.</span>
+                </h1>
+                
+                <p class="text-gray-300 text-sm md:text-lg font-light max-w-2xl mx-auto leading-relaxed opacity-80">
+                    The pride of the Muntindilaw National High School CAT Corps —
+                    training students to be disciplined, confident, and future leaders.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6">
+                    <a href="about.html" class="w-full sm:w-auto bg-white text-green-950 px-12 py-4 rounded-full font-black uppercase tracking-widest text-xs hover:bg-yellow-500 transition-all duration-300 shadow-2xl">
+                        About CAT 
+                    </a>
+                    <a href="join.html" class="w-full sm:w-auto border border-white/20 text-white px-12 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition-all">
+                        Apply Now
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <div class="absolute bottom-10 w-full flex justify-center">
+            <div class="flex items-center space-x-4 opacity-20">
+                <div class="h-[1px] w-12 bg-white"></div>
+                <p class="text-[8px] text-white uppercase tracking-[1em] font-bold italic">First to respond, last to quit</p>
+                <div class="h-[1px] w-12 bg-white"></div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
