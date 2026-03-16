@@ -17,11 +17,33 @@
             background-image: radial-gradient(circle at top right, rgba(20, 83, 45, 0.4), transparent);
         }
         .heading-font { font-family: 'Montserrat', sans-serif; }
+        
         .glass-nav {
             background: rgba(5, 26, 11, 0.95);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        /* Mobile Menu Sidebar Style */
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background: rgba(5, 26, 11, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            border-left: 1px solid rgba(255,255,255,0.1);
+        }
+        #mobile-menu.active { right: 0; }
+
         .gallery-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -73,12 +95,13 @@
                     <img src="https://i.imgur.com/ezYRCVu.jpeg" class="h-10 w-10 rounded-full border border-white/20 bg-white">
                     <img src="https://i.imgur.com/SmhQQAd.jpeg" class="h-10 w-10 rounded-full border border-yellow-500 shadow-lg object-cover bg-white">
                 </div>
-                <div class="hidden sm:block leading-none">
+                <div class="leading-none">
                     <p class="text-white font-black tracking-tighter uppercase text-sm">MNHS CAT CLUB</p>
                     <p class="text-yellow-500 text-[6px] font-bold uppercase tracking-[0.3em]">Citizenship Advancement Training</p>
                 </div>
             </div>
-            <div class="flex items-center space-x-8">
+
+            <div class="hidden lg:flex items-center space-x-8">
                 <ul class="flex space-x-6 text-[10px] font-bold uppercase tracking-widest">
                     <li><a href="home.html" class="text-white/70 hover:text-white transition">Home</a></li>
                     <li><a href="officers.html" class="text-white/70 hover:text-white transition">Officers</a></li>
@@ -88,8 +111,22 @@
                 </ul>
                 <a href="feedback.html" class="bg-yellow-500 text-green-950 px-5 py-2 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-yellow-400 transition-all shadow-lg">Feedback</a>
             </div>
+
+            <button id="menu-toggle" class="lg:hidden text-white p-2">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
         </div>
     </nav>
+
+    <div id="mobile-menu" class="lg:hidden">
+        <button id="menu-close" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
+        <a href="index.html" class="text-xl font-bold uppercase tracking-widest">Home</a>
+        <a href="officers.html" class="text-xl font-bold uppercase tracking-widest">Officers</a>
+        <a href="about.html" class="text-xl font-bold uppercase tracking-widest">About</a>
+        <a href="gallery.html" class="text-xl font-bold text-yellow-500 uppercase tracking-widest">Gallery</a>
+        <a href="join.html" class="text-xl font-bold uppercase tracking-widest">Join</a>
+        <a href="feedback.html" class="bg-yellow-500 text-green-950 px-10 py-3 rounded-full font-black uppercase tracking-widest">Feedback</a>
+    </div>
 
     <header class="py-16 text-center" data-aos="fade-down">
         <h2 class="heading-font text-5xl md:text-6xl uppercase italic text-white tracking-tighter">Our <span class="text-yellow-500">Memories</span></h2>
@@ -105,8 +142,7 @@
                 </div>
             </div>
             <h3 class="font-bold text-base mb-2 text-yellow-500 uppercase tracking-tight">Color Guard</h3>
-            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">The Color Guard of CAT is the group that carries and presents the flag during school ceremonies and special events.
-              They show discipline, respect, and teamwork in every flag ceremony and activity.</p>
+            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">The Color Guard of CAT is the group that carries and presents the flag during school ceremonies and special events. They show discipline, respect, and teamwork in every flag ceremony and activity.</p>
         </div>
 
         <div class="gallery-card p-4 rounded-3xl cursor-pointer" onclick="handleAlbumClick('housetohouse')">
@@ -117,8 +153,7 @@
                 </div>
             </div>
             <h3 class="font-bold text-base mb-2 text-yellow-500 uppercase tracking-tight">House to House</h3>
-            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">House-to-house activities in CAT involve visiting homes to share information, conduct community surveys,
-             or give assistance when needed. This helps students build communication skills, responsibility, and stronger connections with the community.</p>
+            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">House-to-house activities in CAT involve visiting homes to share information, conduct community surveys, or give assistance when needed. This helps students build communication skills, responsibility, and stronger connections with the community.</p>
         </div>
 
         <div class="gallery-card p-4 rounded-3xl cursor-pointer" onclick="handleAlbumClick('drill')">
@@ -129,8 +164,7 @@
                 </div>
             </div>
             <h3 class="font-bold text-base mb-2 text-yellow-500 uppercase tracking-tight">Activities</h3>
-            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">CAT has different activities like drills, leadership training, 
-           community service, school programs, and team-building exercises. These activities help students learn discipline, responsibility, and teamwork.</p>
+            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">CAT has different activities like drills, leadership training, community service, school programs, and team-building exercises. These activities help students learn discipline, responsibility, and teamwork.</p>
         </div>
 
         <div class="gallery-card p-4 rounded-3xl cursor-pointer" onclick="handleAlbumClick('lakbay')">
@@ -141,8 +175,7 @@
                 </div>
             </div>
             <h3 class="font-bold text-base mb-2 text-yellow-500 uppercase tracking-tight">Lakbay Sanay</h3>
-            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">Lakbay-Sanay is an activity where students travel to different places to learn new skills and gain 
-            real-life experience. It helps them become more independent, observant, and responsible while learning outside the classroom.</p>
+            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">Lakbay-Sanay is an activity where students travel to different places to learn new skills and gain real-life experience. It helps them become more independent, observant, and responsible while learning outside the classroom.</p>
         </div>
 
         <div class="gallery-card p-4 rounded-3xl cursor-pointer" onclick="handleAlbumClick('community')">
@@ -153,8 +186,7 @@
                 </div>
             </div>
             <h3 class="font-bold text-base mb-2 text-yellow-500 uppercase tracking-tight">Bautismo</h3>
-            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">For bautismo events, CAT members may assist in maintaining order, guiding guests, and helping with simple event tasks.
-          This activity helps students practice responsibility, discipline, and proper behavior during special occasions.</p>
+            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">For bautismo events, CAT members may assist in maintaining order, guiding guests, and helping with simple event tasks. This activity helps students practice responsibility, discipline, and proper behavior during special occasions.</p>
         </div>
 
         <div class="gallery-card p-4 rounded-3xl cursor-pointer" onclick="handleAlbumClick('budol')">
@@ -165,8 +197,7 @@
                 </div>
             </div>
             <h3 class="font-bold text-base mb-2 text-yellow-500 uppercase tracking-tight">Budol Fight</h3>
-            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">Budol Fight is an activity where members eat together using banana leaves as a table and share food without plates. It promotes unity,
-               teamwork, and bonding among members while practicing discipline and cooperation.</p>
+            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">Budol Fight is an activity where members eat together using banana leaves as a table and share food without plates. It promotes unity, teamwork, and bonding among members while practicing discipline and cooperation.</p>
         </div>
 
         <div class="gallery-card p-4 rounded-3xl cursor-pointer" onclick="handleAlbumClick('training')">
@@ -177,8 +208,7 @@
                 </div>
             </div>
             <h3 class="font-bold text-base mb-2 text-yellow-500 uppercase tracking-tight">Leadership Training</h3>
-            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">Leadership training in CAT helps students develop confidence, responsibility, 
-            and good decision-making skills. It teaches them how to guide a team, communicate clearly, and become good role models to others.</p>
+            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">Leadership training in CAT helps students develop confidence, responsibility, and good decision-making skills. It teaches them how to guide a team, communicate clearly, and become good role models to others.</p>
         </div>
 
         <div class="gallery-card p-4 rounded-3xl cursor-pointer" onclick="handleAlbumClick('achievements')">
@@ -189,8 +219,7 @@
                 </div>
             </div>
             <h3 class="font-bold text-base mb-2 text-yellow-500 uppercase tracking-tight">Achievements</h3>
-            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">CAT achievements include winning competitions, completing successful training activities, and
-            actively participating in school and community events. These accomplishments show the members’ discipline, teamwork, leadership, and dedication.</p>
+            <p class="text-[9px] text-gray-400 uppercase tracking-widest border-l-2 border-yellow-500 pl-2">CAT achievements include winning competitions, completing successful training activities, and actively participating in school and community events. These accomplishments show the members’ discipline, teamwork, leadership, and dedication.</p>
         </div>
     </main>
 
@@ -211,199 +240,70 @@
 <script>
     AOS.init({ duration: 800, once: true });
 
+    // Navbar Toggle Script
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuClose = document.getElementById('menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    menuClose.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+
     const albums = {
         flag: { 
             type: "folder", 
             title: "Color Guard", 
             years: {
-                "May 2025": [
-                     "https://i.imgur.com/n3KHmjr.jpeg", 
-                     "https://i.imgur.com/9HOsnww.jpeg",
-                     "https://i.imgur.com/gfVqNDz.jpeg",
-                     "https://i.imgur.com/MzeASKu.jpeg",
-                     "https://i.imgur.com/UZH7x1M.jpeg",
-                     "https://i.imgur.com/CDEyP8j.jpeg",
-                     "https://i.imgur.com/aMs05en.jpeg",
-                     "https://i.imgur.com/KAM9ibU.jpeg",
-                     "https://i.imgur.com/d6BpvjT.jpeg",
-                     "https://i.imgur.com/NRqKcLJ.jpeg",
-                     "https://i.imgur.com/eDfSuci.jpeg"
-
-            ],
-                "June 2025": [
-                     "https://i.imgur.com/vfmnRiN.jpeg", 
-                     "https://i.imgur.com/Z9ThDwc.jpeg",
-                     "https://i.imgur.com/vvHOVkH.jpeg",
-                     "https://i.imgur.com/IkrNzeK.jpeg",
-                     "https://i.imgur.com/h39An8N.jpeg",
-                     "https://i.imgur.com/yNFSYDv.jpeg",
-                     "https://i.imgur.com/m9eCc4C.jpeg",
-                     "https://i.imgur.com/c96Hljt.jpeg",
-                     "https://i.imgur.com/JS6jR17.jpeg"
-            ],   
-
-               "August 2025": [
-                     "https://i.imgur.com/QovI8wn.jpeg", 
-                     "https://i.imgur.com/AvtKVPU.jpeg",
-                     "https://i.imgur.com/9dAQtKB.jpeg",
-                     "https://i.imgur.com/cyVqfhQ.jpeg"
-            ],
-               "September 2025": [
-                     "https://i.imgur.com/E2h8SXl.jpeg", 
-                     "https://i.imgur.com/HLjJrrL.jpeg",
-                     "https://i.imgur.com/joqL2ht.jpeg",
-                     "https://i.imgur.com/bCEft8R.jpeg",
-                     "https://i.imgur.com/aaTXwR0.jpeg",
-                     "https://i.imgur.com/5gWJzgo.jpeg",
-                     "https://i.imgur.com/ViWBhCv.jpeg"
-            ], 
-               "October 2025": [
-                     "https://i.imgur.com/NaJEDMc.jpeg", 
-                     "https://i.imgur.com/AoamhYv.jpeg",
-                     "https://i.imgur.com/MfGqtR0.jpeg",
-                     "https://i.imgur.com/kjWsQUL.jpeg",
-                     "https://i.imgur.com/sdpr5Vb.jpeg",
-                     "https://i.imgur.com/5k2J4Ms.jpeg",
-                     "https://i.imgur.com/MlOCez2.jpeg",
-                     "https://i.imgur.com/L2iqWBV.jpeg", 
-                     "https://i.imgur.com/OLZkFfN.jpeg",
-                     "https://i.imgur.com/3AQDlr1.jpeg",
-                     "https://i.imgur.com/TSgXU90.jpeg",
-                     "https://i.imgur.com/FZkFt30.jpeg",
-                     "https://i.imgur.com/TocuRQH.jpeg",
-                     "https://i.imgur.com/c6B8bdR.jpeg",
-                     "https://i.imgur.com/9bnHUpZ.jpeg",
-                     "https://i.imgur.com/gIuNV1v.jpeg",
-                     "https://i.imgur.com/U0V3tAo.jpeg",
-                     "https://i.imgur.com/NnosZmB.jpeg",
-                     "https://i.imgur.com/xiSjve2.jpeg",
-                     "https://i.imgur.com/koi9xle.jpeg",
-            ]
+                "May 2025": ["https://i.imgur.com/n3KHmjr.jpeg", "https://i.imgur.com/9HOsnww.jpeg", "https://i.imgur.com/gfVqNDz.jpeg", "https://i.imgur.com/MzeASKu.jpeg", "https://i.imgur.com/UZH7x1M.jpeg", "https://i.imgur.com/CDEyP8j.jpeg", "https://i.imgur.com/aMs05en.jpeg", "https://i.imgur.com/KAM9ibU.jpeg", "https://i.imgur.com/d6BpvjT.jpeg", "https://i.imgur.com/NRqKcLJ.jpeg", "https://i.imgur.com/eDfSuci.jpeg"],
+                "June 2025": ["https://i.imgur.com/vfmnRiN.jpeg", "https://i.imgur.com/Z9ThDwc.jpeg", "https://i.imgur.com/vvHOVkH.jpeg", "https://i.imgur.com/IkrNzeK.jpeg", "https://i.imgur.com/h39An8N.jpeg", "https://i.imgur.com/yNFSYDv.jpeg", "https://i.imgur.com/m9eCc4C.jpeg", "https://i.imgur.com/c96Hljt.jpeg", "https://i.imgur.com/JS6jR17.jpeg"],   
+                "August 2025": ["https://i.imgur.com/QovI8wn.jpeg", "https://i.imgur.com/AvtKVPU.jpeg", "https://i.imgur.com/9dAQtKB.jpeg", "https://i.imgur.com/cyVqfhQ.jpeg"],
+                "September 2025": ["https://i.imgur.com/E2h8SXl.jpeg", "https://i.imgur.com/HLjJrrL.jpeg", "https://i.imgur.com/joqL2ht.jpeg", "https://i.imgur.com/bCEft8R.jpeg", "https://i.imgur.com/aaTXwR0.jpeg", "https://i.imgur.com/5gWJzgo.jpeg", "https://i.imgur.com/ViWBhCv.jpeg"], 
+                "October 2025": ["https://i.imgur.com/NaJEDMc.jpeg", "https://i.imgur.com/AoamhYv.jpeg", "https://i.imgur.com/MfGqtR0.jpeg", "https://i.imgur.com/kjWsQUL.jpeg", "https://i.imgur.com/sdpr5Vb.jpeg", "https://i.imgur.com/5k2J4Ms.jpeg", "https://i.imgur.com/MlOCez2.jpeg", "https://i.imgur.com/L2iqWBV.jpeg", "https://i.imgur.com/OLZkFfN.jpeg", "https://i.imgur.com/3AQDlr1.jpeg", "https://i.imgur.com/TSgXU90.jpeg", "https://i.imgur.com/FZkFt30.jpeg", "https://i.imgur.com/TocuRQH.jpeg", "https://i.imgur.com/c6B8bdR.jpeg", "https://i.imgur.com/9bnHUpZ.jpeg", "https://i.imgur.com/gIuNV1v.jpeg", "https://i.imgur.com/U0V3tAo.jpeg", "https://i.imgur.com/NnosZmB.jpeg", "https://i.imgur.com/xiSjve2.jpeg", "https://i.imgur.com/koi9xle.jpeg"]
             }
         },
-       housetohouse: {
-    type: "folder",
-    title: "House to House",
-    years: {
-        "DAY 1": {
-            date: "May 19, 2025",
-            images: [
-                "https://i.imgur.com/QjVVPCv.jpeg",
-                "https://i.imgur.com/s1GhvCh.jpeg",
-                "https://i.imgur.com/iWtVVdA.jpeg",
-                "https://i.imgur.com/FAXgSZD.jpeg",
-                "https://i.imgur.com/6QpBJtT.jpeg"
-            ]
+        housetohouse: {
+            type: "folder",
+            title: "House to House",
+            years: {
+                "DAY 1": { date: "May 19, 2025", images: ["https://i.imgur.com/QjVVPCv.jpeg", "https://i.imgur.com/s1GhvCh.jpeg", "https://i.imgur.com/iWtVVdA.jpeg", "https://i.imgur.com/FAXgSZD.jpeg", "https://i.imgur.com/6QpBJtT.jpeg"] },
+                "DAY 2": { date: "May 20, 2025", images: ["https://i.imgur.com/Lpy2pkL.jpeg", "https://i.imgur.com/ivr5fEw.jpeg", "https://i.imgur.com/CktCMHq.jpeg", "https://i.imgur.com/39qqAUi.jpeg", "https://i.imgur.com/gvbMY0R.jpeg", "https://i.imgur.com/TlgqIcj.jpeg", "https://i.imgur.com/WkwErU1.jpeg", "https://i.imgur.com/IQEgmvF.jpeg"] },
+                "DAY 3": { date: "May 21, 2025", images: ["https://i.imgur.com/R5WloIg.jpeg", "https://i.imgur.com/a065BSb.jpeg", "https://i.imgur.com/yaQh2Kt.jpeg", "https://i.imgur.com/nAigYCE.jpeg", "https://i.imgur.com/pETFXy6.jpeg"] },
+                "DAY 4": { date: "May 22, 2025", images: ["https://i.imgur.com/TBM6V4S.jpeg", "https://i.imgur.com/hSiGQFB.jpeg", "https://i.imgur.com/buSO1cv.jpeg"] },
+                "DAY 5": { date: "May 27, 2025", images: ["https://i.imgur.com/LIKlpbG.jpeg", "https://i.imgur.com/hIvgJAK.jpeg", "https://i.imgur.com/Mv1zGmy.jpeg", "https://i.imgur.com/r706dbc.jpeg"] },
+                "DAY 6": { date: "May 28, 2025", images: ["https://i.imgur.com/9IKHfcj.jpeg", "https://i.imgur.com/KfWq5KC.jpeg", "https://i.imgur.com/2L34Dv8.jpeg", "https://i.imgur.com/GcQKWgz.jpeg", "https://i.imgur.com/QParNIW.jpeg", "https://i.imgur.com/mqyraGm.jpeg", "https://i.imgur.com/2tGVVDN.jpeg", "https://i.imgur.com/E9N8zPM.jpeg"] },
+                "DAY 7": { date: "May 29, 2025", images: ["https://i.imgur.com/O8GJlGN.jpeg", "https://i.imgur.com/LVC78p3.jpeg", "https://i.imgur.com/DjFFXOD.jpeg", "https://i.imgur.com/0OJX7iy.jpeg", "https://i.imgur.com/lnUC02N.jpeg", "https://i.imgur.com/dX0ZI7m.jpeg", "https://i.imgur.com/2OSatTm.jpeg"] },
+                "DAY 8": { date: "May 29, 2025", images: ["https://i.imgur.com/H0pGbsM.jpeg", "https://i.imgur.com/fKleoNU.jpeg", "https://i.imgur.com/asEtaM0.jpeg", "https://i.imgur.com/fA1sN3l.jpeg", "https://i.imgur.com/THR7GM7.jpeg"] },
+                "DAY 9": { date: "May 29, 2025", images: ["https://i.imgur.com/EYyjjui.jpeg", "https://i.imgur.com/DoDvU1I.jpeg", "https://i.imgur.com/vHcc9Bz.jpeg", "https://i.imgur.com/Y1ChDuL.jpeg", "https://i.imgur.com/mydLu56.jpeg"] }
+            }
         },
-        "DAY 2": {
-            date: "May 20, 2025",
-            images: [
-                "https://i.imgur.com/Lpy2pkL.jpeg",
-                "https://i.imgur.com/ivr5fEw.jpeg",
-                "https://i.imgur.com/CktCMHq.jpeg",
-                "https://i.imgur.com/39qqAUi.jpeg",
-                "https://i.imgur.com/gvbMY0R.jpeg",
-                "https://i.imgur.com/TlgqIcj.jpeg",
-                "https://i.imgur.com/WkwErU1.jpeg",
-                "https://i.imgur.com/IQEgmvF.jpeg"
-            ]
-        },
-        "DAY 3": {
-            date: "May 21, 2025",
-            images: [
-                "https://i.imgur.com/R5WloIg.jpeg",
-                "https://i.imgur.com/a065BSb.jpeg",
-                "https://i.imgur.com/yaQh2Kt.jpeg",
-                "https://i.imgur.com/nAigYCE.jpeg",
-                "https://i.imgur.com/pETFXy6.jpeg"
-            ]
-        },
-        "DAY 4": {
-            date: "May 22, 2025",
-            images: [
-                 "https://i.imgur.com/TBM6V4S.jpeg",
-                 "https://i.imgur.com/hSiGQFB.jpeg",
-                 "https://i.imgur.com/buSO1cv.jpeg"
-            ]
-        },
-        "DAY 5": {
-            date: "May 27, 2025",
-            images: [
-                 "https://i.imgur.com/LIKlpbG.jpeg",
-                 "https://i.imgur.com/hIvgJAK.jpeg",
-                 "https://i.imgur.com/Mv1zGmy.jpeg",
-                 "https://i.imgur.com/r706dbc.jpeg"
-            ]
-        },
-        "DAY 6": {
-            date: "May 28, 2025",
-            images: [
-                  "https://i.imgur.com/9IKHfcj.jpeg",
-                  "https://i.imgur.com/KfWq5KC.jpeg",
-                  "https://i.imgur.com/2L34Dv8.jpeg",
-                  "https://i.imgur.com/GcQKWgz.jpeg",
-                  "https://i.imgur.com/QParNIW.jpeg",
-                  "https://i.imgur.com/mqyraGm.jpeg",
-                  "https://i.imgur.com/2tGVVDN.jpeg",
-                  "https://i.imgur.com/E9N8zPM.jpeg"
-              ]
-        },
-        "DAY 7": {
-            date: "May 29, 2025",
-            images: [
-                  "https://i.imgur.com/O8GJlGN.jpeg",
-                  "https://i.imgur.com/LVC78p3.jpeg",
-                  "https://i.imgur.com/DjFFXOD.jpeg",
-                  "https://i.imgur.com/0OJX7iy.jpeg",
-                  "https://i.imgur.com/lnUC02N.jpeg",
-                  "https://i.imgur.com/dX0ZI7m.jpeg",
-                  "https://i.imgur.com/2OSatTm.jpeg"
-              ]
-        },
-        "DAY 8": {
-            date: "May 29, 2025",
-            images: [
-                  "https://i.imgur.com/H0pGbsM.jpeg",
-                  "https://i.imgur.com/fKleoNU.jpeg",
-                  "https://i.imgur.com/asEtaM0.jpeg",
-                  "https://i.imgur.com/fA1sN3l.jpeg",
-                  "https://i.imgur.com/THR7GM7.jpeg"
-              ]
-        },
-        "DAY 9": {
-            date: "May 29, 2025",
-            images: [
-                  "https://i.imgur.com/EYyjjui.jpeg",
-                  "https://i.imgur.com/DoDvU1I.jpeg",
-                  "https://i.imgur.com/vHcc9Bz.jpeg",
-                  "https://i.imgur.com/Y1ChDuL.jpeg",
-                  "https://i.imgur.com/mydLu56.jpeg",
-              ]
-        }
-    }
-},
         drill: { 
             type: "direct", 
             title: "Activities", 
             pics: [
-                { url: "https://i.imgur.com/9NRPTrC.jpeg", date: "May 19, 2025" },
-                { url: "https://i.imgur.com/rtfND9k.jpeg", date: "May 19, 2025" },
-                { url: "https://i.imgur.com/zpF1UF8.jpeg", date: "Oct 14, 2024" },
-                { url: "https://i.imgur.com/h4nqCx8.jpeg", date: "Oct 14, 2025" },
+                { url: "https://i.imgur.com/9NRPTrC.jpeg", date: "Feb 14, 2024" },
+                { url: "https://i.imgur.com/rtfND9k.jpeg", date: "Feb 14, 2024" },
+                { url: "https://i.imgur.com/zpF1UF8.jpeg", date: "Feb 14, 2024" },
+                { url: "https://i.imgur.com/h4nqCx8.jpeg", date: "Feb 14, 2024" },
                 { url: "https://i.imgur.com/LBfSBX1.jpeg", date: "May 29, 2025" },
                 { url: "https://i.imgur.com/CVeHhZ8.jpeg", date: "May 29, 2025" },
                 { url: "https://i.imgur.com/04Y0Pef.jpeg", date: "Feb 14, 2024" },
                 { url: "https://i.imgur.com/ehDLNFl.jpeg", date: "Feb 14, 2024" },
-                { url: "https://i.imgur.com/fBUHkG8.jpeg", date: "Feb 14, 2025" },
+                { url: "https://i.imgur.com/fBUHkG8.jpeg", date: "Feb 14, 2024" },
                 { url: "https://i.imgur.com/kkSglAl.jpeg", date: "Feb 14, 2024" },
-                { url: "https://i.imgur.com/43jORWX.jpeg", date: "Feb 14, 2025" },
-                { url: "https://i.imgur.com/zxLi5sF.jpeg", date: "Sep 20, 2025" },
+                { url: "https://i.imgur.com/43jORWX.jpeg", date: "Feb 14, 2024" },
+                { url: "https://i.imgur.com/zxLi5sF.jpeg", date: "Feb 14, 2024" },
                 { url: "https://i.imgur.com/mim4LOc.jpeg", date: "Oct 23, 2025" },
                 { url: "https://i.imgur.com/lJvU8pg.jpeg", date: "Oct 23, 2024" },
-                { url: "https://i.imgur.com/JJKHFHn.jpeg", date: "Sep 14, 2025" },
-                { url: "https://i.imgur.com/TYEuUPV.jpeg", date: "Sep 14, 2025" },
-                { url: "https://i.imgur.com/Eoqrs7o.jpeg", date: "Sep 14, 2025" },
-                { url: "https://i.imgur.com/7UuWlxJ.jpeg", date: "Sep 14, 2025" } 
+                { url: "https://i.imgur.com/JJKHFHn.jpeg", date: "Feb 14, 2024" },
+                { url: "https://i.imgur.com/TYEuUPV.jpeg", date: "Feb 14, 2024" },
+                { url: "https://i.imgur.com/Eoqrs7o.jpeg", date: "Feb 14, 2024" },
+                { url: "https://i.imgur.com/7UuWlxJ.jpeg", date: "Feb 14, 2024" } 
             ]
         },
         lakbay: { 
@@ -511,22 +411,14 @@
         const actionBtn = document.getElementById('modalActionBtn');
         document.getElementById('modalTitle').innerText = data.title;
         document.getElementById('modalControls').innerHTML = '<p class="text-white/40 text-[10px] uppercase">Select Folder</p>';
-        
         grid.innerHTML = '';
         Object.keys(data.years).forEach(year => {
             const dayData = data.years[year];
             const dateText = dayData.date ? dayData.date : ""; 
             const pics = dayData.images ? dayData.images : dayData;
             const count = pics.length;
-
-            grid.innerHTML += `
-                <div onclick="showYearPics('${id}', '${year}')" class="year-card">
-                    <h3 class="text-4xl font-black heading-font">${year}</h3>
-                    ${dateText ? `<p class="text-yellow-500 text-[10px] font-bold uppercase tracking-widest mt-1">${dateText}</p>` : ''}
-                    <p class="text-[9px] mt-2 opacity-50 uppercase tracking-widest">${count} Photos • View Gallery</p>
-                </div>`;
+            grid.innerHTML += `<div onclick="showYearPics('${id}', '${year}')" class="year-card"><h3 class="text-4xl font-black heading-font">${year}</h3>${dateText ? `<p class="text-yellow-500 text-[10px] font-bold uppercase tracking-widest mt-1">${dateText}</p>` : ''}<p class="text-[9px] mt-2 opacity-50 uppercase tracking-widest">${count} Photos • View Gallery</p></div>`;
         });
-        
         actionBtn.innerText = "Close Album";
         actionBtn.onclick = closeAlbum;
         document.getElementById('albumModal').classList.add('active');
@@ -536,15 +428,12 @@
     function showYearPics(id, year) {
         const data = albums[id.toLowerCase()];
         const dayData = data.years[year];
-        // Logic fix: Extract the array based on data structure
         const pics = dayData.images ? dayData.images : dayData;
-        
         const grid = document.getElementById('modalGrid');
         const actionBtn = document.getElementById('modalActionBtn');
         document.getElementById('modalTitle').innerText = `${data.title} (${year})`;
         document.getElementById('modalControls').innerHTML = `<button onclick="openYearSelection('${id}')" class="text-yellow-500 text-[10px] font-bold uppercase tracking-widest hover:text-white transition">← Back to Selection</button>`;
         grid.innerHTML = '';
-        
         if(!pics || pics.length === 0) {
             grid.innerHTML = '<div class="col-span-full py-20 text-center opacity-30 uppercase tracking-widest">No photos yet</div>';
         } else {
@@ -552,8 +441,8 @@
                 grid.innerHTML += `<div class="overflow-hidden rounded-2xl shadow-2xl bg-white/5 p-2"><img src="${src}" class="img-item"></div>`;
             });
         }
-        actionBtn.innerText = "Back to Folders";
-        actionBtn.onclick = () => openYearSelection(id);
+        actionBtn.innerText = "Back to Main";
+        actionBtn.onclick = closeAlbum;
     }
 
     function openDirectAlbum(id) {
@@ -561,16 +450,10 @@
         const grid = document.getElementById('modalGrid');
         const actionBtn = document.getElementById('modalActionBtn');
         document.getElementById('modalTitle').innerText = data.title;
-        document.getElementById('modalControls').innerHTML = '<p class="text-white/40 text-[10px] uppercase tracking-widest">Photo Gallery</p>';
+        document.getElementById('modalControls').innerHTML = '';
         grid.innerHTML = '';
-        data.pics.forEach(item => {
-            grid.innerHTML += `
-                <div class="group">
-                    <div class="overflow-hidden rounded-2xl shadow-2xl bg-white/5">
-                        <img src="${item.url}" class="img-item">
-                    </div>
-                    <p class="mt-3 text-[10px] font-bold text-yellow-500 uppercase tracking-[0.2em] text-center">${item.date}</p>
-                </div>`;
+        data.pics.forEach(p => {
+            grid.innerHTML += `<div class="overflow-hidden rounded-2xl shadow-2xl bg-white/5 p-2"><img src="${p.url}" class="img-item"><p class="text-[8px] mt-2 text-center opacity-40 uppercase tracking-widest">${p.date}</p></div>`;
         });
         actionBtn.innerText = "Close Album";
         actionBtn.onclick = closeAlbum;
