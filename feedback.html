@@ -25,7 +25,6 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Mobile Menu Sidebar Style */
         #mobile-menu {
             position: fixed;
             top: 0;
@@ -70,6 +69,7 @@
             animation: shine 4s linear infinite;
         }
         @keyframes shine { to { background-position: 200% center; } }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
     </style>
 </head>
 <body class="flex flex-col">
@@ -96,7 +96,7 @@
                     <li><a href="gallery.html" class="text-white/70 hover:text-white transition">Gallery</a></li>
                     <li><a href="join.html" class="text-white/70 hover:text-white transition">Join</a></li>
                 </ul>
-                <a href="feedback.html" class="bg-yellow-500 text-green-950 px-5 py-2 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-lg">Feedback</a>
+                <a href="feedback.html" class="bg-yellow-500 text-green-950 px-5 py-2 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-lg border-2 border-yellow-500">Feedback</a>
             </div>
 
             <button id="menu-toggle" class="lg:hidden text-white p-2">
@@ -107,7 +107,7 @@
 
     <div id="mobile-menu" class="lg:hidden">
         <button id="menu-close" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
-        <a href="home.html" class="text-xl font-bold uppercase tracking-widest">Home</a>
+        <a href="index.html" class="text-xl font-bold uppercase tracking-widest">Home</a>
         <a href="officers.html" class="text-xl font-bold uppercase tracking-widest">Officers</a>
         <a href="about.html" class="text-xl font-bold uppercase tracking-widest">About</a>
         <a href="gallery.html" class="text-xl font-bold uppercase tracking-widest">Gallery</a>
@@ -123,23 +123,23 @@
                 <div class="h-1 w-16 bg-yellow-500 mx-auto mt-4 rounded-full shadow-[0_0_10px_#fbbf24]"></div>
             </header>
 
-            <form id="feedbackForm" class="space-y-6">
+            <form action="https://formspree.io/f/xvzwvpzv" method="POST" id="feedbackForm" class="space-y-6">
                 <div>
                     <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2 ml-1">Full Name</label>
-                    <input type="text" id="name" required class="w-full px-5 py-3 rounded-xl" placeholder="Enter your full name">
+                    <input type="text" name="FullName" id="name" required class="w-full px-5 py-3 rounded-xl" placeholder="Enter your full name">
                 </div>
 
                 <div>
                     <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2 ml-1">Email Address</label>
-                    <input type="text" id="email" required class="w-full px-5 py-3 rounded-xl" placeholder="name@gmail.com">
+                    <input type="email" name="Email" id="email" required class="w-full px-5 py-3 rounded-xl" placeholder="name@gmail.com">
                 </div>
 
                 <div>
                     <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2 ml-1">Your Message</label>
-                    <textarea id="message" rows="4" required class="w-full px-5 py-3 rounded-xl resize-none" placeholder="Enter your feedback here..."></textarea>
+                    <textarea name="Message" id="message" rows="4" required class="w-full px-5 py-3 rounded-xl resize-none" placeholder="Enter your feedback here..."></textarea>
                 </div>
 
-                <button type="submit" class="w-full bg-yellow-500 text-green-950 py-4 rounded-xl font-black uppercase text-xs tracking-[0.2em] hover:bg-white hover:scale-[1.02] transition-all duration-300 shadow-xl">
+                <button type="submit" id="submitBtn" class="w-full bg-yellow-500 text-green-950 py-4 rounded-xl font-black uppercase text-xs tracking-[0.2em] hover:bg-white hover:scale-[1.02] transition-all duration-300 shadow-xl">
                     Submit Report
                 </button>
             </form>
@@ -153,7 +153,7 @@
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        // Navbar Toggle Script
+        // Navbar Logic
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -168,15 +168,18 @@
             document.body.style.overflow = 'auto';
         });
 
+        // Formspree AJAX Submission
         const feedbackForm = document.getElementById('feedbackForm');
+        const submitBtn = document.getElementById('submitBtn');
 
-        feedbackForm.addEventListener('submit', (e) => {
+        feedbackForm.addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const nameValue = document.getElementById('name').value.trim();
             const emailValue = document.getElementById('email').value.toLowerCase().trim();
             const messageValue = document.getElementById('message').value.trim();
 
+            // Validation logic
             if (/\d/.test(nameValue)) {
                 alert("❌ INVALID NAME: Numbers are not allowed in the name field!");
                 return;
@@ -187,26 +190,36 @@
                 return;
             }
 
-            const emailParts = emailValue.split('@');
-            const namePart = emailParts[0]; 
-
-            if (namePart === "") {
-                alert("❌ INVALID EMAIL: Email prefix cannot be empty!");
-                return;
-            }
-
-            if (/^\d+$/.test(namePart)) {
-                alert("❌ INVALID EMAIL: Email prefix cannot be purely numbers!");
-                return;
-            }
-
             if (messageValue.length < 5) {
-                alert("❌ MESSAGE TOO SHORT: Please provide a more detailed feedback.");
+                alert("❌ MESSAGE TOO SHORT: Please provide more detailed feedback.");
                 return;
             }
 
-            alert("✅ SUCCESS: Thank you! Your feedback has been submitted successfully.");
-            feedbackForm.reset();
+            // UI Feedback
+            submitBtn.disabled = true;
+            submitBtn.innerText = "SENDING REPORT...";
+
+            const formData = new FormData(this);
+
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    alert("✅ SUCCESS: Thank you! Your feedback has been submitted successfully.");
+                    this.reset(); // AUTO-DELETE/CLEAR FIELDS
+                } else {
+                    alert("❌ ERROR: Failed to send. Please try again later.");
+                }
+            } catch (error) {
+                alert("❌ NETWORK ERROR: Check your connection.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "SUBMIT REPORT";
+            }
         });
     </script>
 </body>
