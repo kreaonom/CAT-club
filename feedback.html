@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <style>
@@ -70,6 +71,16 @@
         }
         @keyframes shine { to { background-position: 200% center; } }
         button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Custom style para sa SweetAlert para bumagay sa theme mo */
+        .swal2-popup {
+            background: #051a0b !important;
+            color: white !important;
+            border: 1px solid rgba(251, 191, 36, 0.3) !important;
+            border-radius: 20px !important;
+        }
+        .swal2-title, .swal2-html-container { color: white !important; }
+        .swal2-confirm { background-color: #fbbf24 !important; color: #051a0b !important; font-weight: bold !important; }
     </style>
 </head>
 <body class="flex flex-col">
@@ -210,12 +221,20 @@
             const emailValue = document.getElementById('email').value.toLowerCase().trim();
 
             if (/\d/.test(nameValue)) {
-                alert("❌ INVALID NAME: Numbers are not allowed!");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Name',
+                    text: 'Numbers are not allowed in the name field!',
+                });
                 return;
             }
 
             if (!emailValue.endsWith("@gmail.com")) {
-                alert("❌ INVALID EMAIL: Please use '@gmail.com' only!");
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Invalid Email',
+                    text: 'Please use a valid @gmail.com address!',
+                });
                 return;
             }
 
@@ -232,13 +251,28 @@
                 });
 
                 if (response.ok) {
-                    alert("✅ SUCCESS: Your feedback has been sent successfully!");
+                    // Magpapakita ito ng magandang notification sa gitna ng screen
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'Your feedback has been sent to the CAT Corps.',
+                        timer: 3000,
+                        showConfirmButton: false
+                    });
                     this.reset();
                 } else {
-                    alert("❌ ERROR: Something went wrong.");
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong with Formspree.',
+                    });
                 }
             } catch (error) {
-                alert("❌ NETWORK ERROR: Check your connection.");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Network Error',
+                    text: 'Please check your internet connection.',
+                });
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerText = "SUBMIT REPORT";
