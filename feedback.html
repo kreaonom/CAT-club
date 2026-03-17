@@ -146,8 +146,41 @@
         </div>
     </main>
 
-    <footer class="py-10 text-center opacity-30">
-        <p class="text-[8px] uppercase tracking-[0.5em] font-bold">MNHS CAT Corps • 2026 Official Page</p>
+    <footer class="py-12 border-t border-white/10 bg-black/20 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-start text-center md:text-left">
+                
+                <div class="space-y-3">
+                    <p class="heading-font text-xl uppercase italic text-yellow-500">MNHS CAT Corps</p>
+                    <p class="text-[9px] text-gray-400 leading-relaxed uppercase tracking-widest">
+                        Muntindilaw National High School<br>
+                        Citizenship Advancement Training<br>
+                        Cainta, Rizal
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <p class="text-[11px] font-black uppercase tracking-[0.3em] text-white">Contact Info</p>
+                    <ul class="text-[10px] space-y-2 text-gray-400 uppercase tracking-wider">
+                        <li class="flex items-center justify-center md:justify-start gap-2">
+                            <span class="text-yellow-500">📧</span> mnhscatcorps@gmail.com
+                        </li>
+                        <li class="flex items-center justify-center md:justify-start gap-2">
+                            <span class="text-yellow-500">🌐</span> fb.com/MNHS.CAT.Corps
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <p class="text-[11px] font-black uppercase tracking-[0.3em] text-white">Official Page</p>
+                    <p class="text-[9px] text-gray-500 uppercase tracking-widest leading-loose">
+                        Serving with Integrity, Discipline, and Loyalty.<br>
+                        © 2026 MNHS CAT Corps.
+                    </p>
+                </div>
+
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -200,7 +233,7 @@
 
                 if (response.ok) {
                     alert("✅ SUCCESS: Your feedback has been sent successfully!");
-                    this.reset(); // Lilinisin ang form fields
+                    this.reset();
                 } else {
                     alert("❌ ERROR: Something went wrong.");
                 }
