@@ -71,6 +71,7 @@
             100% { transform: scale(1); }
         }
         .pump-btn:hover { animation: pump 0.4s ease-in-out; }
+        .pump-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         
         select option { background: #051a0b; color: white; }
     </style>
@@ -81,9 +82,9 @@
         <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
             <div class="flex items-center space-x-4">
                 <div class="flex -space-x-2">
-                    <img src="https://i.imgur.com/UumgAmR.png" class="h-10 w-10 rounded-full border border-white/20 bg-white">
-                    <img src="https://i.imgur.com/ezYRCVu.jpeg" class="h-10 w-10 rounded-full border border-white/20 bg-white">
-                    <img src="https://i.imgur.com/SmhQQAd.jpeg" class="h-10 w-10 rounded-full border border-yellow-500 shadow-lg object-cover bg-white">
+                    <img src="https://i.imgur.com/UumgAmR.png" class="h-10 w-10 rounded-full border border-white/20 bg-white" alt="School Logo">
+                    <img src="https://i.imgur.com/ezYRCVu.jpeg" class="h-10 w-10 rounded-full border border-white/20 bg-white" alt="CAT Logo">
+                    <img src="https://i.imgur.com/SmhQQAd.jpeg" class="h-10 w-10 rounded-full border border-yellow-500 shadow-lg object-cover bg-white" alt="Unit Logo">
                 </div>
                 <div class="leading-none">
                     <p class="text-white font-black tracking-tighter uppercase text-sm">MNHS CAT CLUB</p>
@@ -110,7 +111,7 @@
 
     <div id="mobile-menu" class="lg:hidden">
         <button id="menu-close" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
-        <a href="home.html" class="text-xl font-bold uppercase tracking-widest">Home</a>
+        <a href="index.html" class="text-xl font-bold uppercase tracking-widest">Home</a>
         <a href="officers.html" class="text-xl font-bold uppercase tracking-widest">Officers</a>
         <a href="about.html" class="text-xl font-bold uppercase tracking-widest">About</a>
         <a href="gallery.html" class="text-xl font-bold uppercase tracking-widest">Gallery</a>
@@ -130,14 +131,14 @@
             <form action="https://formspree.io/f/xvzwvpzv" method="POST" id="catForm" class="space-y-6">
                 <div class="space-y-2">
                     <label class="text-[10px] font-bold uppercase tracking-widest text-yellow-500 ml-1">Full Name</label>
-                    <input type="text" name="Full Name" id="fullname" placeholder="Dela Cruz, Juan A." required
+                    <input type="text" name="FullName" id="fullname" placeholder="Dela Cruz, Juan A." required
                         class="input-style w-full px-5 py-4 rounded-xl text-sm focus:ring-0">
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-2">
                         <label class="text-[10px] font-bold uppercase tracking-widest text-yellow-500 ml-1">Grade & Section</label>
-                        <input type="text" name="Grade & Section" id="grade" placeholder="Grade 10 - Bonifacio" required
+                        <input type="text" name="GradeSection" id="grade" placeholder="Grade 10 - Bonifacio" required
                             class="input-style w-full px-5 py-4 rounded-xl text-sm focus:ring-0">
                     </div>
                     <div class="space-y-2">
@@ -149,13 +150,13 @@
 
                 <div class="space-y-2">
                     <label class="text-[10px] font-bold uppercase tracking-widest text-yellow-500 ml-1">Phone Number</label>
-                    <input type="tel" name="Phone Number" id="phone" placeholder="09123456789" required
+                    <input type="tel" name="Phone" id="phone" placeholder="09123456789" required
                         class="input-style w-full px-5 py-4 rounded-xl text-sm focus:ring-0">
                 </div>
 
                 <div class="space-y-2">
                     <label class="text-[10px] font-bold uppercase tracking-widest text-yellow-500 ml-1">Desired Position</label>
-                    <select name="Desired Position" id="position" required class="input-style w-full px-5 py-4 rounded-xl text-sm focus:ring-0 appearance-none">
+                    <select name="Position" id="position" required class="input-style w-full px-5 py-4 rounded-xl text-sm focus:ring-0 appearance-none">
                         <option value="">Select Position</option>
                         <option>Corps Commander</option>
                         <option>Deputy Corps Commander</option>
@@ -178,7 +179,7 @@
                 </div>
 
                 <div class="pt-6">
-                    <button type="submit" class="pump-btn w-full bg-yellow-500 text-green-950 py-4 rounded-xl font-black uppercase text-xs tracking-[0.2em] hover:bg-white transition-all duration-300 shadow-xl">
+                    <button type="submit" id="submitBtn" class="pump-btn w-full bg-yellow-500 text-green-950 py-4 rounded-xl font-black uppercase text-xs tracking-[0.2em] hover:bg-white transition-all duration-300 shadow-xl">
                         Submit Form
                     </button>
                 </div>
@@ -198,6 +199,7 @@
     <script>
         AOS.init({ duration: 1000, once: true });
 
+        // Mobile Menu Toggle
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -212,14 +214,45 @@
             document.body.style.overflow = 'auto';
         });
 
-        // Tandaan: Inalis natin ang e.preventDefault() para tuluyang maipadala ang data sa Formspree.
-        // Pero nag-iwan tayo ng phone validation.
+        // Formspree AJAX Submission
         const catForm = document.getElementById('catForm');
-        catForm.addEventListener('submit', function(e) {
+        const submitBtn = document.getElementById('submitBtn');
+
+        catForm.addEventListener('submit', async function(e) {
+            e.preventDefault(); // Stop page reload
+
+            const fullname = document.getElementById('fullname').value;
             const phone = document.getElementById('phone').value;
+
             if (phone.length < 11) {
-                e.preventDefault();
                 alert("❌ INVALID PHONE: Please provide an 11-digit number.");
+                return;
+            }
+
+            // UI Feedback
+            submitBtn.disabled = true;
+            submitBtn.innerText = "SENDING...";
+
+            const formData = new FormData(this);
+
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    alert("🎖️ APPLICATION FILED!\n\nSalute, Cadet " + fullname + "!\nYour application has been successfully sent.");
+                    this.reset(); // AUTO-DELETE ALL FIELDS
+                } else {
+                    alert("❌ SUBMISSION FAILED: Please try again later.");
+                }
+            } catch (error) {
+                alert("❌ NETWORK ERROR: Please check your connection.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "SUBMIT FORM";
             }
         });
     </script>
